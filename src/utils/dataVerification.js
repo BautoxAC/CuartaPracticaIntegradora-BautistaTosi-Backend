@@ -1,13 +1,13 @@
 import { isNotFalsy } from './isNotFalsy.js'
 export function dataVerification (...params) {
   const returnMessage = []
-  for (const values of params) {
-    isNotFalsy(values, params)
+  for (let i = 0; i < params.length; i++) {
+    const values = params[i]
     if (Array.isArray(values) && values.length > 1) {
       const typeOfData = values[values.length - 1]
+      isNotFalsy(values, i + 1)
       for (let i = 0; i < values.length - 1; i++) {
         const data = values[i]
-        isNotFalsy(typeOfData, data)
         if (typeof (data) === typeOfData && !(data instanceof RegExp) && !(data instanceof Date)) {
           returnMessage.push(data)
         } else {
