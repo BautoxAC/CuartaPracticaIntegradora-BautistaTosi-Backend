@@ -39,7 +39,7 @@ Este proyecto es un API básica que sigue las consignas de la tercera preEntrega
 - En la colección de prueba de mongoDB
 
 ### `npm run testApp`
--Inicia los tests de toda la app pedida por la entrega
+- Inicia los tests de toda la app pedida por la entrega
 
 
 ## Documentación y listado de las Dependecias:
