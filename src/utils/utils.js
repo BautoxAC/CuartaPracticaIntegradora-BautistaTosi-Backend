@@ -74,5 +74,7 @@ export const isValidPassword = (password, hashPassword) => bcrypt.compareSync(pa
 
 // ---------------- Current time----------------
 
-const currentDateAndTime = new Date()
-export const formattedDate = currentDateAndTime.toLocaleString('en-GB')
+export function formattedDate () {
+  const currentDateAndTime = new Date()
+  return currentDateAndTime.toLocaleString('en-GB')
+}

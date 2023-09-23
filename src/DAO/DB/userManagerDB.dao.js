@@ -78,4 +78,17 @@ export class UserManagerDBDAO {
       })
     }
   }
+
+  async updateUser (user) {
+    try {
+      await userModel.updateOne({ _id: user._id.toString() }, user)
+    } catch (e) {
+      CustomError.createError({
+        name: 'Updating a user Error',
+        cause: 'Failed to update the User in DAO (check the data)',
+        message: 'Error to update a user',
+        code: EErros.DATABASES_ERROR
+      })
+    }
+  }
 }

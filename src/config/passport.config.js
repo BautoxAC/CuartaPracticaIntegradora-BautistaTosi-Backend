@@ -2,12 +2,13 @@ import { userModel } from '../DAO/models/users.model.js'
 import GitHubStrategy from 'passport-github2'
 import passport from 'passport'
 import local from 'passport-local'
-import { newMessage, createHash, isValidPassword } from '../utils/utils.js'
+import { newMessage, createHash, isValidPassword, formattedDate } from '../utils/utils.js'
 import { CartManagerDBService } from '../services/carts.service.js'
 import { fileURLToPath } from 'url'
 import config from './env.config.js'
 import { EErros } from '../services/errors/enums.js'
 import fetch from 'node-fetch'
+
 import { CustomError } from '../services/errors/custom-error.js'
 const LocalStrategy = local.Strategy
 const { clientID, clientSecret, url } = config
@@ -37,6 +38,8 @@ export function iniPassPortLocalAndGithub () {
           })
           return done(null, false)
         }
+        user.last_connection = formattedDate()
+        await userModel.updateOne({ _id: user._id.toString() }, user)
         newMessage('success', 'success in logging with passport(the user alredy exists)', {})
         return done(null, user)
       } catch (e) {
@@ -74,7 +77,8 @@ export function iniPassPortLocalAndGithub () {
             age,
             password: createHash(password),
             role: 'user',
-            cart: newCart.data._id
+            cart: newCart.data._id,
+            last_connection: formattedDate()
           }
           const userCreated = await userModel.create(newUser)
           newMessage('success', 'success in registering with passport', {})
@@ -126,12 +130,15 @@ export function iniPassPortLocalAndGithub () {
               role: 'user',
               age: 0,
               password: 'nopass',
-              cart: newCart.data._id
+              cart: newCart.data._id,
+              last_connection: formattedDate()
             }
             const userCreated = await userModel.create(newUser)
             newMessage('success', 'user logged succesfully with passport github', {})
             return done(null, userCreated)
           } else {
+            user.last_connection = formattedDate()
+            await userModel.updateOne({ _id: user._id.toString() }, user)
             newMessage('success', 'user logged succesfully with passport github', {})
             return done(null, user)
           }

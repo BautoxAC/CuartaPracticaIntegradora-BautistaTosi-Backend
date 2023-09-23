@@ -4,9 +4,10 @@ import { v4 as uuidv4 } from 'uuid'
 import { fileURLToPath } from 'url'
 import { CustomError } from './errors/custom-error.js'
 import { EErros } from './errors/enums.js'
-import { newMessage } from '../utils/utils.js'
+import { newMessage, formattedDate } from '../utils/utils.js'
 import { UserManagerDBDAO } from '../DAO/DB/userManagerDB.dao.js'
 import { CodeManagerDBDAO } from '../DAO/DB/codeManagerDB.dao.js'
+import { dataVerification } from '../utils/dataVerification.js'
 const UserManager = new UserManagerDBDAO()
 const CodeManager = new CodeManagerDBDAO()
 export class AuthService {
@@ -46,6 +47,18 @@ export class AuthService {
           code: EErros.INCORRECT_CREDENTIALS_ERROR
         })
       }
+    } catch (e) {
+      return newMessage('failure', 'A problem ocurred', e.toString(), fileURLToPath(import.meta.url))
+    }
+  }
+
+  async updateUser (userMail) {
+    try {
+      dataVerification([userMail, 'string'])
+      const user = await UserManager.getUserByUserName(userMail)
+      user.last_connection = formattedDate()
+      await UserManager.updateUser(user)
+      return newMessage('success', 'user succesfully updated', user)
     } catch (e) {
       return newMessage('failure', 'A problem ocurred', e.toString(), fileURLToPath(import.meta.url))
     }

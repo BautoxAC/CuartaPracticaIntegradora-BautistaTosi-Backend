@@ -1,5 +1,11 @@
 import { Schema, model } from 'mongoose'
 
+const documentSchema = new Schema({
+  name: {
+    type: String
+  },
+  reference: { type: String }
+})
 const schema = new Schema({
   firstName: {
     type: String,
@@ -32,7 +38,9 @@ const schema = new Schema({
     type: Schema.Types.ObjectId,
     unique: true,
     ref: 'carts'
-  }
+  },
+  documents: { type: [documentSchema], default: [] },
+  last_connection: { type: String, required: true, default: '' }
 })
 
 export const userModel = model('users', schema)

@@ -1,5 +1,5 @@
 import { isNotFalsy } from './isNotFalsy.js'
-export function  (...params) {
+export function dataVerification (...params) {
   const returnMessage = []
   for (const values of params) {
     isNotFalsy(values, params)

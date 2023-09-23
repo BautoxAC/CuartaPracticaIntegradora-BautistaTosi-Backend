@@ -105,7 +105,7 @@ export class CartManagerDBDAO {
 
   async createATicketToBuy (purchaser, amount) {
     try {
-      const newTicket = await ticketModel.create({ code: uuidv4(), purchase_datetime: formattedDate, purchaser, amount })
+      const newTicket = await ticketModel.create({ code: uuidv4(), purchase_datetime: formattedDate(), purchaser, amount })
       return newTicket
     } catch (e) {
       CustomError.createError({
