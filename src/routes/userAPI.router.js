@@ -9,7 +9,7 @@ userRouter.put('/premium/:uid', isUser, userControllerRouting.changerole)
 
 userRouter.get('/premium/:uid', isUser, userControllerRouting.renderChangeRole)
 
-userRouter.post('/:uid', isUser, uploader.fields([
+userRouter.post('/:uid/documents', isUser, uploader.fields([
   { name: 'identificacion', maxCount: 1 },
   { name: 'comprobanteDomicilio', maxCount: 1 },
   { name: 'comprobanteEstadoCuenta', maxCount: 1 }
