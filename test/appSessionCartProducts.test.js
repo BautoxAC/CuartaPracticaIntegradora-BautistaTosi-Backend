@@ -5,7 +5,6 @@ import { describe, it } from 'mocha'
 const expect = chai.expect
 const requester = supertest('http://127.0.0.1:8080')
 let adminSession
-let userSessionCartID
 let userSession
 describe('ENDPOINT /auth', function () {
   const mockUser = {

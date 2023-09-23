@@ -26,7 +26,7 @@ export class AuthController {
   }
 
   async logOut (req, res) {
-    const userMail = req.session.user.email
+    const userMail = req?.session?.user?.email
     req.session.destroy(async (err) => {
       if (err) {
         return res.status(500).render('error', { error: 'no se pudo cerrar su session' })

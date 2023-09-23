@@ -128,7 +128,7 @@ export function iniPassPortLocalAndGithub () {
               firstName: profile._json.name || profile._json.login || 'noname',
               lastName: 'nolast',
               role: 'user',
-              age: 0,
+              age: 13,
               password: 'nopass',
               cart: newCart.data._id,
               last_connection: formattedDate()

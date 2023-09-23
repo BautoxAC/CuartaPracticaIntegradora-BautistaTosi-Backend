@@ -13,10 +13,17 @@ import bcrypt from 'bcrypt'
 // ------------MULTER------------------
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname + '/public/assets')
+    let folder = ''
+
+    if (req?.params?.uid) {
+      folder = 'profiles'
+    } else {
+      folder = 'products'
+    }
+    cb(null, __dirname + `/public/assets/${folder}`)
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname)
+    cb(null, file.originalname + ' ' + req?.session?.user?.email)
   }
 })
 export const uploader = multer({ storage })

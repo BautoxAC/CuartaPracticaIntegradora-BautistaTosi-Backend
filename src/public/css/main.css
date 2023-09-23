@@ -3,7 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    background-color: #f0f0f0;
+}
 img {
     height: 2rem;
     width: 2rem;
@@ -120,6 +122,8 @@ form {
     position: relative;
 }
 .buttonAccount{
+    margin:auto;
+    display: block;
     margin-left: 40%;
     font-size: 1.5rem;
 }
@@ -163,4 +167,78 @@ form {
     margin: .2rem;
     text-align: center;
     font-size: 1.5rem;
+}
+/* vista profiles */
+
+.container-custom {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.section-custom {
+    margin-bottom: 20px;
+}
+
+.section-custom h2 {
+    margin-top: 0;
+}
+
+.user-info-custom {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-info-custom p {
+    margin: 0;
+}
+
+.form-section-custom {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-section-custom label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-section-custom input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.form-section-custom button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-custom{
+    position: static;
+}
+.image-section-custom {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    gap: 3rem;
+}
+
+.image-section-custom h2 {
+    margin-top: 0;
+}
+
+.image-section-custom img {
+    width: 10rem;
+    height: auto;
+    margin-bottom: 10px;
 }

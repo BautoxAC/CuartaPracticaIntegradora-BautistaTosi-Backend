@@ -39,7 +39,7 @@ const schema = new Schema({
     unique: true,
     ref: 'carts'
   },
-  documents: { type: [documentSchema], default: [] },
+  documents: { type: [documentSchema], default: [], maxlength: 3 },
   last_connection: { type: String, required: true, default: '' }
 })
 

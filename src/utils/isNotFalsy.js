@@ -14,7 +14,7 @@ export function isNotFalsy (...params) {
     CustomError.createError({
       name: 'Error verifying if the values are falsy',
       cause: `The code cannot continue, the next position of the values you sent are falsy ${falsyValues}`,
-      message: 'Error trying to continue the code',
+      message: `Error trying to continue the code, the next position of the values you sent are falsy ${falsyValues}`,
       code: EErros.INCORRECT_CREDENTIALS_ERROR
     })
   }
